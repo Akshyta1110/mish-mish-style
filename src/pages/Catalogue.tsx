@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -9,10 +10,10 @@ const Catalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const categories = [
-    { name: 'Shirts', icon: '👔', color: 'bg-blue-100' },
-    { name: 'Trousers', icon: '👖', color: 'bg-green-100' },
-    { name: 'Accessories', icon: '👜', color: 'bg-purple-100' },
-    { name: 'Shoes', icon: '👟', color: 'bg-orange-100' },
+    { name: 'Shirts', image: '/assets/shirts.png', color: 'bg-blue-100' },
+    { name: 'Trousers', image: '/assets/trousers.png', color: 'bg-green-100' },
+    { name: 'Accessories', image: '/assets/accessories.png', color: 'bg-purple-100' },
+    { name: 'Shoes', image: '/assets/shoes.png', color: 'bg-orange-100' },
   ];
 
   const suggestedEvents = [
@@ -53,13 +54,19 @@ const Catalogue = () => {
               <button
                 key={category.name}
                 onClick={() => handleCategoryClick(category.name)}
-                className={`p-6 rounded-2xl text-center hover:scale-105 transition-all duration-200 shadow-sm ${
+                className={`p-7 rounded-2xl text-center hover:scale-105 transition-all duration-200 shadow-sm ${
                   selectedCategory === category.name 
                     ? 'bg-primary text-primary-foreground' 
                     : 'bg-white/80 hover:bg-white/90'
                 }`}
               >
-                <div className="text-4xl mb-3">{category.icon}</div>
+                <div className="mb-3 flex justify-center">
+                  <img 
+                    src={category.image} 
+                    alt={category.name}
+                    className="w-[88px] h-[88px] object-contain"
+                  />
+                </div>
                 <h3 className="font-semibold">{category.name}</h3>
               </button>
             ))}
@@ -87,7 +94,7 @@ const Catalogue = () => {
             <h2 className="text-lg font-semibold text-foreground mb-4">{selectedCategory}</h2>
             <div className="grid grid-cols-2 gap-4">
               {[1, 2, 3, 4].map((item) => (
-                <div key={item} className="bg-white/80 rounded-xl p-4 aspect-square flex items-center justify-center">
+                <div key={item} className="bg-white/80 rounded-xl p-5 aspect-square flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
                     <div className="text-3xl mb-2">📷</div>
                     <p className="text-sm">Item {item}</p>

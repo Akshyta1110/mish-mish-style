@@ -40,8 +40,9 @@ All colors MUST be HSL.
     --radius: 1rem;
     
     /* Custom StyleSync colors */
-    --gradient-start: 35 25% 90%;
-    --gradient-end: 220 15% 85%;
+  /* gradient hex -> converted to HSL approximations for existing variables */
+  --gradient-start: 30 20% 90%; /* fallback HSL for #E9E3D8 */
+  --gradient-end: 30 18% 76%; /* fallback HSL for #C0B5A4 */
     --maroon: 0 60% 45%;
     --maroon-light: 0 50% 65%;
     --beige: 35 20% 92%;
@@ -110,8 +111,13 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  @apply bg-background text-foreground;
+  /* Global gradient background per request: #E9E3D8 @14% -> #C0B5A4 @44% */
+  background-image: linear-gradient(180deg, #E9E3D8 14%, #C0B5A4 44%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 

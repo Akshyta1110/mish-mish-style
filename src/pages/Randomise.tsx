@@ -27,7 +27,7 @@ const Randomise = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gradient-start to-gradient-end relative">
       <TwinklingStars count={8} />
-      
+
       <div className="relative z-10">
         {/* Header */}
         <header className="flex items-center p-6">
@@ -44,16 +44,16 @@ const Randomise = () => {
 
         {/* Card Stack */}
         <div className="flex flex-col items-center px-6">
-          <div className="relative w-full max-w-sm">
-            {/* Main Card */}
-            <div className={`bg-white rounded-3xl p-8 shadow-xl transition-all duration-300 ${
+          <div className="relative w-full max-w-md">
+            {/* Main Card - slightly larger */}
+            <div className={`bg-white rounded-3xl p-10 shadow-xl transition-all duration-300 ${
               swipeDirection === 'left' ? 'transform -translate-x-full rotate-12 opacity-0' :
               swipeDirection === 'right' ? 'transform translate-x-full rotate-12 opacity-0' :
               'transform translate-x-0 rotate-0 opacity-100'
             }`}>
-              <div className="aspect-square bg-gray-100 rounded-2xl flex flex-col items-center justify-center mb-6">
-                <div className="text-6xl mb-4">👗</div>
-                <p className="text-lg font-semibold text-foreground">Outfit #{currentOutfit}</p>
+              <div className="aspect-square md:aspect-[1/1] bg-gray-100 rounded-2xl flex flex-col items-center justify-center mb-6 md:mb-8 w-full max-w-[520px]">
+                <div className="text-7xl md:text-8xl mb-4">👗</div>
+                <p className="text-xl md:text-2xl font-semibold text-foreground">Outfit #{currentOutfit}</p>
                 <p className="text-sm text-muted-foreground">Casual Summer Look</p>
               </div>
               
@@ -66,31 +66,36 @@ const Randomise = () => {
             </div>
 
             {/* Background Cards */}
-            <div className="absolute inset-0 bg-white rounded-3xl shadow-lg -z-10 transform scale-95 translate-y-2"></div>
-            <div className="absolute inset-0 bg-white rounded-3xl shadow-sm -z-20 transform scale-90 translate-y-4"></div>
+            <div className="absolute inset-0 bg-white rounded-3xl shadow-lg -z-10 transform scale-96 translate-y-2"></div>
+            <div className="absolute inset-0 bg-white rounded-3xl shadow-sm -z-20 transform scale-92 translate-y-4"></div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex justify-center space-x-8 mt-8">
-            <Button
-              onClick={() => handleSwipe('left')}
-              className="w-16 h-16 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-600"
-            >
-              <X size={24} />
-            </Button>
-            
-            <Button
-              onClick={() => handleSwipe('right')}
-              className="w-16 h-16 bg-yellow-400 hover:bg-yellow-500 rounded-full text-white"
-            >
-              <Star size={24} />
-            </Button>
+          {/* Action Buttons moved to screen edges */}
+          <div className="relative w-full max-w-md mt-8">
+            <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
+              <Button
+                onClick={() => handleSwipe('left')}
+                className="w-16 h-16 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-600 shadow-lg flex items-center justify-center"
+              >
+                <X size={24} />
+              </Button>
+            </div>
+
+            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2">
+              <Button
+                onClick={() => handleSwipe('right')}
+                className="w-16 h-16 bg-[#CDCBC7] hover:brightness-95 rounded-full text-white shadow-lg p-0 overflow-hidden flex items-center justify-center"
+              >
+                {/* Replace Star icon with PNG image */}
+                <img src="/assets/liked.png" alt="star" className="w-[56px] h-[56px]" />
+              </Button>
+            </div>
           </div>
 
           {/* Instructions */}
           <div className="mt-8 text-center text-muted-foreground">
             <p className="text-sm">Swipe left to pass, right to star</p>
-            <p className="text-xs mt-1">Or use the buttons below</p>
+            <p className="text-xs mt-1">Or use the buttons on either side</p>
           </div>
         </div>
       </div>

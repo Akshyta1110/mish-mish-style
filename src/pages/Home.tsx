@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, Bell, User, Plus, Camera, Image } from 'lucide-react';
@@ -13,25 +14,25 @@ const Home = () => {
   const categories = [
     { 
       name: 'Catalogue', 
-      icon: '🪞', 
+      image: '/assets/catalogue.png', 
       path: '/catalogue',
       description: 'Browse your wardrobe'
     },
     { 
       name: 'Starred', 
-      icon: '⭐', 
+      image: '/assets/Starred.png', 
       path: '/starred',
       description: 'Your favorite outfits'
     },
     { 
       name: 'Planner', 
-      icon: '📋', 
+      image: '/assets/Planner.png', 
       path: '/planner',
       description: 'Plan your outfits'
     },
     { 
       name: 'Randomise', 
-      icon: '🎲', 
+      image: '/assets/Randomise.png', 
       path: '/randomise',
       description: 'Discover new looks'
     },
@@ -84,22 +85,20 @@ const Home = () => {
           </div>
         </header>
 
-        {/* Welcome Message */}
-        <div className="px-6 mb-8">
-          <p className="text-lg text-foreground">
-            Greetings, <span className="font-semibold">Username</span>
-          </p>
-        </div>
 
         {/* AI Chat Section */}
         <div className="px-6 mb-8">
-          <div className="bg-white/80 rounded-2xl p-4 shadow-sm">
-            <div className="flex items-center space-x-3 mb-3">
-              <div className="text-2xl">🐱</div>
-              <div className="bg-black text-white px-3 py-1 rounded-lg text-sm">
-                Let's style you up!!
-              </div>
+          <div className="bg-white/80 rounded-2xl p-2 shadow-sm relative">
+            {/* GIF at top left corner of outer white box */}
+            <div className="absolute z-10 pointer-events-none top-0 left-0 -translate-x-8 -translate-y-[5rem]">
+              <img
+                src="/assets/cute-unscreen.gif"
+                alt="Mish Mish animated"
+                className="w-40 h-40 object-contain pointer-events-none"
+              />
             </div>
+            
+            {/* removed speech bubble as requested */}
             
             <button
               onClick={handleChatClick}
@@ -114,15 +113,23 @@ const Home = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="px-6 mb-8">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="px-6 mb-8 -mt-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {categories.map((category) => (
               <button
                 key={category.name}
                 onClick={() => navigate(category.path)}
-                className="bg-white/80 rounded-2xl p-6 text-center hover:bg-white/90 transition-colors shadow-sm"
+                className="bg-white/80 rounded-2xl p-4 sm:p-6 text-center hover:bg-white/90 transition-colors shadow-sm"
               >
-                <div className="text-4xl mb-2">{category.icon}</div>
+                <div className="mb-2 flex justify-center">
+                  <img 
+                    src={category.image} 
+                    alt={category.name}
+                    className={`object-contain ${
+                      category.name === 'Planner' ? 'w-16 h-16 sm:w-20 sm:h-20' : 'w-10 h-10 sm:w-12 sm:h-12'
+                    }`}
+                  />
+                </div>
                 <h3 className="font-semibold text-foreground mb-1">{category.name}</h3>
                 <p className="text-xs text-muted-foreground">{category.description}</p>
               </button>

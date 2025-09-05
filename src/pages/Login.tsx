@@ -97,7 +97,11 @@ const Login = () => {
                 variant="outline"
                 className="w-full h-12 bg-black text-white hover:bg-black/90 border-0 rounded-lg"
               >
-                <span className="mr-2">🍎</span>
+                <img 
+                  src="/assets/apple.png" 
+                  alt="Apple"
+                  className="w-5 h-5 mr-2"
+                />
                 Sign Up with Apple
               </Button>
             </div>

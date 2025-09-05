@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Star } from 'lucide-react';
+import { ArrowLeft, Star, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TwinklingStars from '@/components/TwinklingStars';
 
@@ -9,11 +9,16 @@ const Starred = () => {
 
   // Mock starred outfits data
   const starredOutfits = [
-    { id: 1, name: 'Casual Summer', image: '👗', starred: true },
-    { id: 2, name: 'Business Formal', image: '👔', starred: true },
-    { id: 3, name: 'Date Night', image: '💃', starred: true },
-    { id: 4, name: 'Weekend Chill', image: '👕', starred: true },
+    { id: 1, name: 'Casual Summer', image: '/assets/casual-summer.png', starred: true },
+    { id: 2, name: 'Business Formal', image: '/assets/business.png', starred: true },
+    { id: 3, name: 'Date Night', image: '/assets/date-night.png', starred: true },
+    { id: 4, name: 'Weekend Chill', image: '/assets/weekend.png', starred: true },
   ];
+
+  const handleAddBoard = () => {
+    // In a real app, this would open a modal or navigate to add board page
+    console.log('Add new board');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gradient-start to-gradient-end relative">
@@ -48,15 +53,19 @@ const Starred = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-1">
               {starredOutfits.map((outfit) => (
                 <div
                   key={outfit.id}
-                  className="bg-white/80 rounded-2xl p-4 hover:bg-white/90 transition-colors cursor-pointer"
+                  className="bg-white/80 rounded-lg p-2 sm:p-1 hover:bg-white/90 transition-colors cursor-pointer"
                 >
-                  <div className="aspect-square bg-gray-50 rounded-xl flex flex-col items-center justify-center mb-3">
-                    <div className="text-4xl mb-2">{outfit.image}</div>
-                    <Star className="text-yellow-500 fill-current" size={20} />
+                  <div className="aspect-square bg-gray-50 rounded-md flex flex-col items-center justify-center mb-1 sm:mb-0.5 relative">
+                    <img 
+                      src={outfit.image} 
+                      alt={outfit.name}
+                      className="w-44 h-44 sm:w-72 sm:h-72 object-contain mb-1 sm:mb-0.5"
+                    />
+                    <Star className="text-yellow-500 fill-current absolute top-1 right-1 sm:top-0 sm:right-0" size={16} />
                   </div>
                   
                   <div className="text-center">
@@ -64,6 +73,20 @@ const Starred = () => {
                   </div>
                 </div>
               ))}
+              
+              {/* Add Board Button */}
+              <div
+                onClick={handleAddBoard}
+                className="bg-white/80 rounded-lg p-2 sm:p-1 hover:bg-white/90 transition-colors cursor-pointer border-2 border-dashed border-gray-300 hover:border-gray-400"
+              >
+                <div className="aspect-square bg-gray-50 rounded-md flex flex-col items-center justify-center mb-1 sm:mb-0.5">
+                  <Plus className="text-gray-400 w-16 h-16 sm:w-24 sm:h-24" />
+                </div>
+                
+                <div className="text-center">
+                  <h3 className="font-semibold text-foreground text-sm">Add Board</h3>
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -7,11 +7,21 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
   { ignores: ["dist"] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    // Use type-aware configs so JSX types (JSX.IntrinsicElements) resolve correctly
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+    ],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        // Point ESLint to your TS project so it picks up jsx: "react-jsx" and React types
+        project: ["./tsconfig.app.json"],
+        tsconfigRootDir: new URL('.', import.meta.url).pathname,
+      },
     },
     plugins: {
       "react-hooks": reactHooks,

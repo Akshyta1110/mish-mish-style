@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Send } from 'lucide-react';
@@ -17,7 +18,7 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m Mish Mish, your style buddy! How can I help you look amazing today?',
+      text: 'Hello! I\'m Mish Mish, your style buddy!',
       sender: 'ai',
       timestamp: new Date(),
     }
@@ -66,7 +67,7 @@ const Chat = () => {
         
         <div className="flex items-center space-x-3">
           <img 
-            src="/lovable-uploads/ffd3dc3d-a099-42f5-a817-f42f601fac04.png" 
+            src="/assets/mish-mish.png" 
             alt="Mish Mish avatar"
             className="w-8 h-8 rounded-full object-cover"
           />
@@ -86,7 +87,7 @@ const Chat = () => {
           >
             {message.sender === 'ai' && (
               <img 
-                src="/lovable-uploads/ffd3dc3d-a099-42f5-a817-f42f601fac04.png" 
+                src="/assets/mish-mish.png" 
                 alt="Mish Mish"
                 className="w-8 h-8 rounded-full object-cover mr-2 mt-1 flex-shrink-0"
               />
