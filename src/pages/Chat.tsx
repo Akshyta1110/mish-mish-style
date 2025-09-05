@@ -65,7 +65,11 @@ const Chat = () => {
         </Button>
         
         <div className="flex items-center space-x-3">
-          <div className="text-2xl">🐱</div>
+          <img 
+            src="/lovable-uploads/ffd3dc3d-a099-42f5-a817-f42f601fac04.png" 
+            alt="Mish Mish avatar"
+            className="w-8 h-8 rounded-full object-cover"
+          />
           <div>
             <h1 className="font-semibold text-lg">Mish Mish</h1>
             <p className="text-sm text-muted-foreground">Your style buddy</p>
@@ -80,6 +84,13 @@ const Chat = () => {
             key={message.id}
             className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
+            {message.sender === 'ai' && (
+              <img 
+                src="/lovable-uploads/ffd3dc3d-a099-42f5-a817-f42f601fac04.png" 
+                alt="Mish Mish"
+                className="w-8 h-8 rounded-full object-cover mr-2 mt-1 flex-shrink-0"
+              />
+            )}
             <div
               className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
                 message.sender === 'user'
