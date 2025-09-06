@@ -140,6 +140,11 @@ All colors MUST be HSL.
   }
 }
 
+  .bg-box-gradient {
+    /* 47% lighter than #D9D9D9 (blended toward white) */
+    background-color: #EBEBEB;
+  }
+
 @keyframes fadeIn {
   from {
     opacity: 0;

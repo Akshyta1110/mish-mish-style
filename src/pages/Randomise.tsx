@@ -15,7 +15,13 @@ const Randomise = () => {
     setTimeout(() => {
       if (direction === 'right') {
         // Add to starred (simulate)
-        console.log('Added to starred!');
+        const starredItem = { name: `Outfit #${currentOutfit}`, image: '/assets/liked.png' };
+        try {
+          localStorage.setItem('lastStarred', JSON.stringify(starredItem));
+        } catch (e) {
+          // ignore localStorage errors in non-browser environments
+        }
+        console.log('Added to starred!', starredItem);
       }
       
       // Show next outfit
@@ -75,7 +81,8 @@ const Randomise = () => {
             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
               <Button
                 onClick={() => handleSwipe('left')}
-                className="w-16 h-16 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-600 shadow-lg flex items-center justify-center"
+                className="w-16 h-16 rounded-full text-gray-600 shadow-lg flex items-center justify-center"
+                style={{ backgroundColor: 'rgba(217,217,217,0.5)' }}
               >
                 <X size={24} />
               </Button>
@@ -84,10 +91,11 @@ const Randomise = () => {
             <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2">
               <Button
                 onClick={() => handleSwipe('right')}
-                className="w-16 h-16 bg-[#CDCBC7] hover:brightness-95 rounded-full text-white shadow-lg p-0 overflow-hidden flex items-center justify-center"
+                className="w-16 h-16 rounded-full text-white shadow-lg p-0 overflow-hidden flex items-center justify-center"
+                style={{ backgroundColor: 'rgba(217,217,217,0.5)' }}
               >
                 {/* Replace Star icon with PNG image */}
-                <img src="/assets/liked.png" alt="star" className="w-[56px] h-[56px]" />
+                <img src="/assets/liked.png" alt="star" className="w-[64px] h-[64px]" />
               </Button>
             </div>
           </div>

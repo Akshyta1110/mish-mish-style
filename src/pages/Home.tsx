@@ -119,7 +119,7 @@ const Home = () => {
               <button
                 key={category.name}
                 onClick={() => navigate(category.path)}
-                className="bg-white/80 rounded-2xl p-4 sm:p-6 text-center hover:bg-white/90 transition-colors shadow-sm"
+                className="rounded-2xl p-4 sm:p-6 text-center hover:bg-white/90 transition-colors shadow-sm bg-box-gradient"
               >
                 <div className="mb-2 flex justify-center">
                   <img 

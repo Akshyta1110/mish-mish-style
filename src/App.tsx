@@ -19,6 +19,7 @@ import Planner from "./pages/Planner";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import BoardView from "./pages/BoardView";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ function AnimatedRoutes() {
         <Route path="/catalogue" element={<PageTransition><Catalogue /></PageTransition>} />
         <Route path="/randomise" element={<PageTransition><Randomise /></PageTransition>} />
         <Route path="/starred" element={<PageTransition><Starred /></PageTransition>} />
+  <Route path="/boards/:id" element={<PageTransition><BoardView /></PageTransition>} />
         <Route path="/planner" element={<PageTransition><Planner /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
